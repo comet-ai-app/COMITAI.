@@ -1,0 +1,17 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+class LocalData {
+  static const String _modeKey = "selected_mode";
+
+  // Save Current Mode
+  Future<void> saveMode(String mode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_modeKey, mode);
+  }
+
+  // Get Last Used Mode
+  Future<String> getMode() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_modeKey) ?? "General Mode";
+  }
+}

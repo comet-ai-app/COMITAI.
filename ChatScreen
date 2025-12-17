@@ -1,0 +1,33 @@
+// ChatScreen ke andar update karein:
+final TTSEngine _voice = TTSEngine();
+
+@override
+void initState() {
+  super.initState();
+  _voice.initVoice(); // Voice initialize
+}
+
+void _sendMessage() async {
+  String text = _controller.text;
+  if (text.isEmpty) return;
+
+  setState(() {
+    _messages.add({"role": "user", "content": text});
+  });
+
+  // Mode detection logic
+  String detectedMode = IntentDetector.detectMode(text);
+  
+  // Get AI Response
+  String response = await AIService().getResponse(text, detectedMode);
+  
+  setState(() {
+    _messages.add({"role": "assistant", "content": response});
+    currentMode = detectedMode;
+  });
+
+  // COMET Speaks the response
+  _voice.speak(response); 
+  
+  _controller.clear();
+}

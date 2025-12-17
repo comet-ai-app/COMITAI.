@@ -1,0 +1,31 @@
+name: comet_ai
+description: One AI. Infinite Power. Next-gen AI Assistant.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_tts: ^3.8.3          # Voice system ke liye
+  shared_preferences: ^2.2.2   # Local storage ke liye
+  google_fonts: ^6.1.0         # Futuristic fonts ke liye
+  lottie: ^2.7.0               # Smooth UI animations ke liye
+  flutter_svg: ^2.0.9          # Icons ke liye
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - config/
+
+  fonts:
+    - family: CometFont
+      fonts:
+        - asset: assets/fonts/comet_regular.ttf
+        - asset: assets/fonts/comet_bold.ttf
+          weight: 700
